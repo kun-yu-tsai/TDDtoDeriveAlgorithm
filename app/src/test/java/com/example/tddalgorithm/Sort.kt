@@ -3,6 +3,7 @@ package com.example.tddalgorithm
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
+import java.util.*
 
 class Sort {
     @Test
@@ -69,14 +70,35 @@ class Sort {
         )
     }
 
+    private fun quickSort(array: Array<Int>){
+        quickSortSpecificPart(array, 0 , array.lastIndex)
+    }
+
+    private fun quickSortSpecificPart(array: Array<Int>, startingFrom: Int, pivot: Int) {
+        var processingIndex2 = startingFrom
+        var nextAllocationIndex2 = startingFrom
+
+        while (processingIndex2 < pivot) {
+            if (array[processingIndex2] < array[pivot]) {
+                swap(array, processingIndex2, nextAllocationIndex2)
+                nextAllocationIndex2++
+            }
+            processingIndex2++
+        }
+
+        swap(array, pivot, nextAllocationIndex2)
+
+        if (nextAllocationIndex2 + 1 < pivot) {
+            quickSortSpecificPart(array, nextAllocationIndex2 + 1, pivot)
+        }
+
+        if(nextAllocationIndex2 - 1 > startingFrom) {
+            quickSortSpecificPart(array, startingFrom, nextAllocationIndex2 - 1)
+        }
+    }
+
     private fun input(array: Array<Int>): Array<Int>? {
-
-//        if (array[0] > array[array.lastIndex])
-//            swap(array, 0, array.lastIndex)
-
-        anotherSort(array)
-
-//        bubbleSort(array)
+        quickSort(array)
 
         return array
     }
