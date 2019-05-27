@@ -68,51 +68,14 @@ class Sort {
 //        if (array[0] > array[array.lastIndex])
 //            swap(array, 0, array.lastIndex)
 
-        if (array.size >= 2) {
-            if (array[0] > array[1]) {
-                swap(array, 0, 1)
+        var anchorKeepMovingToFinalIndex = 1
+        while (anchorKeepMovingToFinalIndex <= array.lastIndex) {
+            var anchorSwapWithPreviousPosition = anchorKeepMovingToFinalIndex
+            while (anchorSwapWithPreviousPosition >= 1 && array[anchorSwapWithPreviousPosition] < array[anchorSwapWithPreviousPosition - 1]) {
+                swap(array, anchorSwapWithPreviousPosition, anchorSwapWithPreviousPosition - 1)
+                anchorSwapWithPreviousPosition--
             }
-        }
-
-        if (array.size >= 3) {
-            if (array[1] > array[2]) {
-                swap(array, 1, 2)
-            }
-
-            if (array[0] > array[1]) {
-                swap(array, 0, 1)
-            }
-        }
-
-        if (array.size >= 4) {
-            if (array[2] > array[3]) {
-                swap(array, 2, 3)
-            }
-
-            if (array[1] > array[2]) {
-                swap(array, 1, 2)
-            }
-
-            if (array[0] > array[1]) {
-                swap(array, 0, 1)
-            }
-        }
-        if (array.size >= 5) {
-            if (array[3] > array[4]) {
-                swap(array, 3, 4)
-            }
-
-            if (array[2] > array[3]) {
-                swap(array, 2, 3)
-            }
-
-            if (array[1] > array[2]) {
-                swap(array, 1, 2)
-            }
-
-            if (array[0] > array[1]) {
-                swap(array, 0, 1)
-            }
+            anchorKeepMovingToFinalIndex++
         }
 
         return array
